@@ -59,14 +59,13 @@ func SpeedTester(w http.ResponseWriter, r *http.Request) {
 		s.PingTest()
 		s.DownloadTest(true)
 		s.UploadTest(true)
-
-		fmt.Printf("Speed (SpeedTest): Latency: %s, Download: %f, Upload: %f\n", s.Latency, s.DLSpeed, s.ULSpeed)
+		fmt.Fprintf(w, "Speed (SpeedTest): Latency: %s, Download: %f, Upload: %f\n", s.Latency, s.DLSpeed, s.ULSpeed)
 	}
 
 	res, err := Netflix()
-	fmt.Print("Speed (Fast): ")
+	fmt.Fprintf(w, "Speed (Fast): ")
 	if err != nil {
 		fmt.Print(err)
 	}
-	fmt.Print(res)
+	fmt.Fprintf(w,"%f", res)
 }
